@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "uqDowStQSoP/hct4gFd6ISn4h2ozMI9X7H1JeHUweU8YA/QN3j9C71bx8misCTU2WadAz2suViq3Ol3JA36aeA==",
+  "dgSpecHash": "UNQ0FnwhfjK9wCEZoQf9AGo1obITnWRglzxBG4YSsfq5VF0Kp+U1WaZ6T64D8ULv7Z0wUzAjBziYbvW4mSCgXQ==",
   "success": true,
-  "projectFilePath": "C:\\Git\\Own\\GraphQL\\WebApplication1\\WebApplication1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Git\\TechLab\\tech-lab-sunweb-2-2021\\GraphQL\\WebApplication1\\WebApplication1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\graphiql\\2.0.0\\graphiql.2.0.0.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\graphql\\4.5.0\\graphql.4.5.0.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\graphql-parser\\7.1.0\\graphql-parser.7.1.0.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\3.1.1\\microsoft.extensions.fileproviders.abstractions.3.1.1.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\3.1.1\\microsoft.extensions.fileproviders.embedded.3.1.1.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.1\\microsoft.extensions.primitives.3.1.1.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
+  ],
   "logs": []
 }

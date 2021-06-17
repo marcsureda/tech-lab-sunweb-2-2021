@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\Own\\GraphQL\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Git\\TechLab\\tech-lab-sunweb-2-2021\\GraphQL\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Git\\Own\\GraphQL\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Git\\TechLab\\tech-lab-sunweb-2-2021\\GraphQL\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\Own\\GraphQL\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Git\\TechLab\\tech-lab-sunweb-2-2021\\GraphQL\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Git\\Own\\GraphQL\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "C:\\Git\\TechLab\\tech-lab-sunweb-2-2021\\GraphQL\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\Own\\GraphQL\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Git\\TechLab\\tech-lab-sunweb-2-2021\\GraphQL\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,6 +43,16 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "GraphQL": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "graphiql": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
