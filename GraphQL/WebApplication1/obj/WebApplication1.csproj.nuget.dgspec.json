@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[4.5.0, )"
             },
+            "GraphQL.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
             "graphiql": {
               "target": "Package",
               "version": "[2.0.0, )"

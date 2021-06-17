@@ -1,16 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "UNQ0FnwhfjK9wCEZoQf9AGo1obITnWRglzxBG4YSsfq5VF0Kp+U1WaZ6T64D8ULv7Z0wUzAjBziYbvW4mSCgXQ==",
+  "dgSpecHash": "YFAwx7gleUoSvZ2/INXgKqBgrDOmi3IBJ0FKujKCP92dzMS5HWC/ifKHju4fcszmVnVfGDkycfA9ZidP9Fg2kQ==",
   "success": true,
   "projectFilePath": "C:\\Git\\TechLab\\tech-lab-sunweb-2-2021\\GraphQL\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\graphiql\\2.0.0\\graphiql.2.0.0.nupkg.sha512",
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\graphql\\4.5.0\\graphql.4.5.0.nupkg.sha512",
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\graphql-parser\\7.1.0\\graphql-parser.7.1.0.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\graphql.newtonsoftjson\\4.5.0\\graphql.newtonsoftjson.4.5.0.nupkg.sha512",
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\3.1.1\\microsoft.extensions.fileproviders.abstractions.3.1.1.nupkg.sha512",
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\3.1.1\\microsoft.extensions.fileproviders.embedded.3.1.1.nupkg.sha512",
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.1\\microsoft.extensions.primitives.3.1.1.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\jordi.rodriguez\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
   ],
