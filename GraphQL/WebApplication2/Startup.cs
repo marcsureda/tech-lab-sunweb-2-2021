@@ -1,18 +1,12 @@
+using GraphQL.Server.Ui.Voyager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GraphQL.Server.Ui.Voyager;
-using Microsoft.EntityFrameworkCore;
 using WebApplication2.Data;
 using WebApplication2.GraphQL;
 using WebApplication2.GraphQL.Items;
@@ -34,7 +28,6 @@ namespace WebApplication2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
 
             services.AddPooledDbContextFactory<ApiDbContext>(options =>
@@ -43,6 +36,8 @@ namespace WebApplication2
                 ));
 
             services.AddScoped<PackagesService>();
+
+            services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
 
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
@@ -56,11 +51,7 @@ namespace WebApplication2
                 .AddFiltering()
                 .AddInMemorySubscriptions();
 
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication2", Version = "v1" });
-            });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApplication2", Version = "v1"}); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,16 +72,28 @@ namespace WebApplication2
 
             app.UseWebSockets();
 
+            app.UseSpaStaticFiles();
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapGraphQL();
             });
 
-            app.UseGraphQLVoyager(new VoyagerOptions()
+            app.UseGraphQLVoyager(new VoyagerOptions
             {
                 GraphQLEndPoint = "/graphql"
             }, "/graphql-voyager");
+
+            app.UseSpa(builder =>
+            {
+                builder.Options.SourcePath = "ClientApp";
+                if (env.IsDevelopment())
+                {
+                    builder.UseReactDevelopmentServer(npmScript: "start");
+                }
+            });
         }
     }
 }

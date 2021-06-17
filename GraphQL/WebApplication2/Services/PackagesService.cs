@@ -19,6 +19,8 @@ namespace WebApplication2.Services
                     .WithHttpMethod(HttpMethod.Get)
                     .WithRelativePath(relativePath);
 
+            System.Diagnostics.Debug.WriteLine($"{apiUri}{relativePath}");
+
             var result = await apiCaller
                 .ExecuteAsync<ProductSearchResponseModel>();
 
