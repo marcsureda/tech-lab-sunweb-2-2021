@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate;
 using HotChocolate.Data;
+using HotChocolate.Data.Sorting;
 using Sundio.Packages.Models;
 using WebApplication2.Data;
 using WebApplication2.Models;
@@ -42,10 +43,19 @@ namespace WebApplication2.GraphQL
 
         [UseProjection]
         [UseFiltering]
-        //[UseSorting]
+        [UseSorting(sortingType: typeof(PackageModelSortType))]
         public async Task<IEnumerable<PackageModel>> GetPackages()
         {
             return await _service.GetPackages();
         }
     }
+
+        public class PackageModelSortType : SortInputType<PackageModel>
+        {
+            protected override void Configure(ISortInputTypeDescriptor<PackageModel> descriptor)
+            {
+                ISortInputTypeDescriptor<PackageModel> sortInputTypeDescriptor = descriptor.BindFieldsImplicitly();
+                sortInputTypeDescriptor.Field(_ => _.BookingRelatedCostsInfo).Ignore();
+            }
+        }
 }
