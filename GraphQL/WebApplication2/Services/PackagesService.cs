@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Sundio.Packages.Models;
-using Sundio.Common;
 using Sundio.Web.HttpClient.NetCore;
-using Sundio.Web.JsonApi.Models;
 
-namespace WebApplication2.GraphQL.Services
+namespace WebApplication2.Services
 {
     public class PackagesService
     {
-        public PackagesService()
-        {
-        }
-
         public async Task<IEnumerable<PackageModel>> GetPackages()
         {
             var relativePath = "/EZ/packages/search?page[limit]=100";
@@ -26,7 +20,7 @@ namespace WebApplication2.GraphQL.Services
                     .WithRelativePath(relativePath);
 
             var result = await apiCaller
-                .ExecuteAsync<SearchResponseModel>();
+                .ExecuteAsync<ProductSearchResponseModel>();
 
             return result.Results;
         }

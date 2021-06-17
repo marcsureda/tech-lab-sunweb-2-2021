@@ -18,7 +18,7 @@ using WebApplication2.GraphQL;
 using WebApplication2.GraphQL.Items;
 using WebApplication2.GraphQL.Lists;
 using WebApplication2.GraphQL.Packages;
-using WebApplication2.GraphQL.Services;
+using WebApplication2.Services;
 
 namespace WebApplication2
 {
@@ -41,6 +41,8 @@ namespace WebApplication2
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")
                 ));
+
+            services.AddScoped<PackagesService>();
 
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
