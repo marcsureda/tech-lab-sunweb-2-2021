@@ -17,6 +17,8 @@ using WebApplication2.Data;
 using WebApplication2.GraphQL;
 using WebApplication2.GraphQL.Items;
 using WebApplication2.GraphQL.Lists;
+using WebApplication2.GraphQL.Packages;
+using WebApplication2.GraphQL.Services;
 
 namespace WebApplication2
 {
@@ -44,6 +46,7 @@ namespace WebApplication2
                 .AddQueryType<Query>()
                 .AddType<ItemType>()
                 .AddType<ListType>()
+                .AddType<PackagesType>()
                 .AddMutationType<Mutation>()
                 .AddSubscriptionType<Subscription>()
                 .AddProjections()

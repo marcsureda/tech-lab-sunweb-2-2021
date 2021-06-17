@@ -4,14 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotChocolate;
 using HotChocolate.Data;
+using Sundio.Packages.Models;
 using WebApplication2.Data;
+using WebApplication2.GraphQL.Services;
 using WebApplication2.Models;
 
 namespace WebApplication2.GraphQL
 {
     public class Query
     {
-
         // So basically this attribute is pulling a db context from a pool
         // using the db context 
         // returning the db context to the pool
@@ -33,5 +34,12 @@ namespace WebApplication2.GraphQL
             return context.Lists;
         }
 
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public async Task<IEnumerable<PackageModel>> GetPackages([ScopedService] PackagesService service)
+        {
+            return await service.GetPackages();
+        }
     }
 }
