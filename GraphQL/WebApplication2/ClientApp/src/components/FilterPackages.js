@@ -12,13 +12,12 @@ const options = [
 export default function FilterPackages({onSubmit, onCancel}) {
   const [mealPlan, setMealPlan] = useState('')
   const [averagePrice, setAveragePrice] = useState('')
-  // const [sortByPrice, setSortByPrice] = useState(false)
+  const [sortByPrice, setSortByPrice] = useState(false)
   const activeOption = options.find(o => o.value === mealPlan)
 
   const submit = e => {
     e.preventDefault()
-    onSubmit({mealPlan, averagePrice})
-    // onSubmit({mealPlan, averagePrice, sortByPrice})
+    onSubmit({mealPlan, averagePrice, sortByPrice})
   }
 
   const cancel = e => {
@@ -38,7 +37,10 @@ export default function FilterPackages({onSubmit, onCancel}) {
             options={options}
         />
           <input type="number" className="input" min="0" value={averagePrice} onChange={e => setAveragePrice(e.target.value)} />
-          {/* <input type="checkbox" className="input" value={sortByPrice} onChange={e => setSortByPrice(e.value)} /> */}
+          <div>
+            <label for="checkboxSort">Sort by price</label>
+            <input type="checkbox" className="input" id="checkboxSort" value={sortByPrice} onChange={e => setSortByPrice(e.target.checked)} />
+          </div>
           <a className="error button" onClick={cancel}>cancel</a>          
           <button type="submit" name="submit">add filters</button>
         </form>

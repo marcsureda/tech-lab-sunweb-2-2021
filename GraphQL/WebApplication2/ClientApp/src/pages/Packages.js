@@ -10,6 +10,7 @@ export default function Packages () {
   const [modal, setModal] = useState(false)
   const [mealplan, setMealPlan] = useState ('')
   const [averagePrice, setAveragePrice] = useState (0)
+  const [sortByPrice, setSortByPrice] = useState (false)
 
   const mealplanFilter = (mealplan !== '' && mealplan !== undefined) ? `mealplan:{
         code:{eq:"${mealplan}"}
@@ -21,15 +22,26 @@ export default function Packages () {
     }` : ``
 
   const whereFilter = averagePriceFilter !== '' || mealplanFilter !== '' ?
-    `(where:{
+    `where:{
       ${mealplanFilter}
       ${averagePriceFilter}
-    })` : ``
+    }` : ``
+
+  const sortFilter = sortByPrice ?
+    `order: {
+      averagePrice:{
+        amount:ASC
+        }
+    }` : ``
+
+  const packagesWhereAndSort = whereFilter !== '' || sortFilter !== '' ?
+    `(${whereFilter}
+    ${sortFilter})` : ``
 
   const GET_PACKAGES = gql`
   query{
   packages
-  ${whereFilter}
+  ${packagesWhereAndSort}
   {
     accommodationId
     departureDate
@@ -72,6 +84,7 @@ export default function Packages () {
     setMealPlan(input.mealPlan)
     console.log(input)
     setAveragePrice(input.averagePrice)
+    setSortByPrice(input.sortByPrice)
   }
 
   const packagesList = packages.data.packages.map(pack => (
