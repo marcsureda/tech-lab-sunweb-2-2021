@@ -9,27 +9,33 @@ import FilterPackages from "../components/FilterPackages";
 export default function Packages () {
   const [modal, setModal] = useState(false)
   const [mealplan, setMealPlan] = useState ('')
-
+  const [averagePrice, setAveragePrice] = useState (0)
 
   const mealplanFilter = (mealplan !== '' && mealplan !== undefined) ? `mealplan:{
         code:{eq:"${mealplan}"}
       }` : ``
 
-  console.log(mealplanFilter)
+  const averagePriceFilter = (averagePrice > 0 && averagePrice !== undefined) ?
+    `averagePrice:{ 
+      amount:{lt:${averagePrice}}
+    }` : ``
+
+  const whereFilter = averagePriceFilter !== '' || mealplanFilter !== '' ?
+    `(where:{
+      ${mealplanFilter}
+      ${averagePriceFilter}
+    })` : ``
 
   const GET_PACKAGES = gql`
   query{
-  packages(where:{
-      ${mealplanFilter}
-      averagePrice:{ 
-        amount:{lt:200}
-      }
-    })
+  packages
+  ${whereFilter}
   {
     accommodationId
     departureDate
     mealplan {
       code
+      description
     }
     averagePrice { amount }
     rooms {
@@ -64,6 +70,8 @@ export default function Packages () {
   const onSubmit = input => {
     setModal(false)
     setMealPlan(input.mealPlan)
+    console.log(input)
+    setAveragePrice(input.averagePrice)
   }
 
   const packagesList = packages.data.packages.map(pack => (
