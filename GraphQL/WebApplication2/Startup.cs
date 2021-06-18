@@ -51,6 +51,7 @@ namespace WebApplication2
             });
 
             services.AddScoped<PackagesService>();
+            services.AddScoped<ProductsService>();
 
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
 

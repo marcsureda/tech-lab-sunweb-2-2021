@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Sundio.Products.Models.Accommodations;
+using Sundio.Products.Models.Impl;
 using Sundio.Web.HttpClient.NetCore;
-using WebApplication2.Models;
 
 namespace WebApplication2.Services
 {
-    public class PackagesService
+    public class ProductsService
     {
-        public async Task<IEnumerable<PackageModelExtended>> GetPackages()
+        public async Task<AccommodationModel> GetProduct(string id)
         {
-            var relativePath = "/EZ/packages/search?page[limit]=50";
-            var apiUri = new Uri("https://acpt-packages.api.sundiogroup.com");
+            var relativePath = $"/EZ/products2/accommodations/{id}";
+            var apiUri = new Uri("https://acpt-products.api.sundiogroup.com");
             IApiCaller apiCaller =
                 new ApiCaller(apiUri)
                     .WithSundioAcceptHeader()
@@ -22,9 +23,9 @@ namespace WebApplication2.Services
             System.Diagnostics.Debug.WriteLine($"{apiUri}{relativePath}");
 
             var result = await apiCaller
-                .ExecuteAsync<ProductSearchResponseModel>();
+                .ExecuteAsync<AccommodationModel>();
 
-            return result.Results;
+            return result;
         }
     }
 }

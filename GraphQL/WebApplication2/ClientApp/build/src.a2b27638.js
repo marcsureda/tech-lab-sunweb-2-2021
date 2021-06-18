@@ -46817,11 +46817,16 @@ const PackageBox = ({
   pack
 }) => _react.default.createElement("div", {
   className: "pet"
-}, _react.default.createElement("div", {
+}, _react.default.createElement("figure", null, _react.default.createElement("img", {
+  src: pack.accommodation.accoImageUrl,
+  alt: ""
+})), _react.default.createElement("div", {
   className: "pet-name"
-}, pack.accommodationId), _react.default.createElement("div", {
+}, pack.accommodationId, " - ", pack.accommodation.name), _react.default.createElement("div", {
   className: "pet-type"
 }, pack.mealplan.code), _react.default.createElement("div", {
+  className: "pet-type"
+}, pack.mealplan.description), _react.default.createElement("div", {
   className: "pet-type"
 }, pack.averagePrice.amount));
 
@@ -54267,11 +54272,14 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const options = [{
+  value: '',
+  label: 'No mealplan'
+}, {
   value: 'LG',
   label: 'Logies'
 }, {
   value: 'LO',
-  label: 'Logies objict'
+  label: 'Logies ontbijt'
 }, {
   value: 'HB',
   label: 'Half Pension'
@@ -54284,13 +54292,17 @@ function FilterPackages({
   onSubmit,
   onCancel
 }) {
-  const [mealPlan, setMealPlan] = (0, _react.useState)('LG');
+  const [mealPlan, setMealPlan] = (0, _react.useState)('');
+  const [averagePrice, setAveragePrice] = (0, _react.useState)('');
+  const [sortByPrice, setSortByPrice] = (0, _react.useState)(false);
   const activeOption = options.find(o => o.value === mealPlan);
 
   const submit = e => {
     e.preventDefault();
     onSubmit({
-      mealPlan
+      mealPlan,
+      averagePrice,
+      sortByPrice
     });
   };
 
@@ -54310,13 +54322,27 @@ function FilterPackages({
     defaultValue: options[0],
     onChange: e => setMealPlan(e.value),
     options: options
-  }), _react.default.createElement("a", {
+  }), _react.default.createElement("input", {
+    type: "number",
+    className: "input",
+    min: "0",
+    value: averagePrice,
+    onChange: e => setAveragePrice(e.target.value)
+  }), _react.default.createElement("div", null, _react.default.createElement("label", {
+    "for": "checkboxSort"
+  }, "Sort by price"), _react.default.createElement("input", {
+    type: "checkbox",
+    className: "input",
+    id: "checkboxSort",
+    value: sortByPrice,
+    onChange: e => setSortByPrice(e.target.checked)
+  })), _react.default.createElement("a", {
     className: "error button",
     onClick: cancel
   }, "cancel"), _react.default.createElement("button", {
     type: "submit",
     name: "submit"
-  }, "add filter"))));
+  }, "add filters"))));
 }
 },{"react":"node_modules/react/index.js","react-select":"node_modules/react-select/dist/react-select.browser.esm.js"}],"src/pages/Packages.js":[function(require,module,exports) {
 "use strict";
@@ -54347,23 +54373,39 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function Packages() {
   const [modal, setModal] = (0, _react.useState)(false);
   const [mealplan, setMealPlan] = (0, _react.useState)('');
+  const [averagePrice, setAveragePrice] = (0, _react.useState)(0);
+  const [sortByPrice, setSortByPrice] = (0, _react.useState)(false);
   const mealplanFilter = mealplan !== '' && mealplan !== undefined ? `mealplan:{
         code:{eq:"${mealplan}"}
       }` : ``;
-  console.log(mealplanFilter);
+  const averagePriceFilter = averagePrice > 0 && averagePrice !== undefined ? `averagePrice:{ 
+      amount:{lt:${averagePrice}}
+    }` : ``;
+  const whereFilter = averagePriceFilter !== '' || mealplanFilter !== '' ? `where:{
+      ${mealplanFilter}
+      ${averagePriceFilter}
+    }` : ``;
+  const sortFilter = sortByPrice ? `order: {
+      averagePrice:{
+        amount:ASC
+        }
+    }` : ``;
+  const packagesWhereAndSort = whereFilter !== '' || sortFilter !== '' ? `(${whereFilter}
+    ${sortFilter})` : ``;
   const GET_PACKAGES = _graphqlTag.default`
   query{
-  packages(where:{
-      ${mealplanFilter}
-      averagePrice:{ 
-        amount:{lt:200}
-      }
-    })
+  packages
+  ${packagesWhereAndSort}
   {
+    accommodation {
+      name
+      accoImageUrl
+    }
     accommodationId
     departureDate
     mealplan {
       code
+      description
     }
     averagePrice { amount }
     rooms {
@@ -54380,7 +54422,7 @@ function Packages() {
   /*const [createPet, newPet] = useMutation(CREATE_PET, {
     update(cache, { data: { addPet } }) {
       const { pets } = cache.readQuery({ query: GET_PETS })
-       cache.writeQuery({
+        cache.writeQuery({
         query: GET_PETS,
         data: { pets: [addPet, ...pets] }
       })
@@ -54393,6 +54435,9 @@ function Packages() {
   const onSubmit = input => {
     setModal(false);
     setMealPlan(input.mealPlan);
+    console.log(input);
+    setAveragePrice(input.averagePrice);
+    setSortByPrice(input.sortByPrice);
   };
 
   const packagesList = packages.data.packages.map(pack => _react.default.createElement("div", {
@@ -57686,7 +57731,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61586" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56081" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

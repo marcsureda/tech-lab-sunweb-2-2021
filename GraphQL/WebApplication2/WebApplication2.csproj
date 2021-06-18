@@ -18,6 +18,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" />
     <PackageReference Include="Sundio.Packages.Models" Version="26.10.0" />
+    <PackageReference Include="Sundio.Products.Models" Version="12.11.0" />
     <PackageReference Include="Sundio.Web.HttpClient.NetCore" Version="1.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>

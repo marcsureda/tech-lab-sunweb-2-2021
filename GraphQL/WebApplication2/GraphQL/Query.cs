@@ -44,7 +44,7 @@ namespace WebApplication2.GraphQL
         [UseProjection]
         [UseFiltering]
         [UseSorting(sortingType: typeof(PackageModelSortType))]
-        public async Task<IEnumerable<PackageModel>> GetPackages()
+        public async Task<IEnumerable<PackageModelExtended>> GetPackages()
         {
             return await _service.GetPackages();
         }

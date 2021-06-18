@@ -43,6 +43,10 @@ export default function Packages () {
   packages
   ${packagesWhereAndSort}
   {
+    accommodation {
+      name
+      accoImageUrl
+    }
     accommodationId
     departureDate
     mealplan {
