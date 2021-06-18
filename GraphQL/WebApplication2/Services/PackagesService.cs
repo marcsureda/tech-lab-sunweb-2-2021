@@ -11,7 +11,7 @@ namespace WebApplication2.Services
     {
         public async Task<IEnumerable<PackageModelExtended>> GetPackages()
         {
-            var relativePath = "/EZ/packages/search?page[limit]=50";
+            var relativePath = "/EZ/packages/search?page[limit]=100";
             var apiUri = new Uri("https://acpt-packages.api.sundiogroup.com");
             IApiCaller apiCaller =
                 new ApiCaller(apiUri)

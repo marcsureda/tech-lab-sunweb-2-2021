@@ -23,7 +23,6 @@ namespace WebApplication2.GraphQL.Packages
 
         private class Resolvers
         {
-
             public Accommodation GetName(PackageModelExtended item)
             {
                 var service = new ProductsService();
