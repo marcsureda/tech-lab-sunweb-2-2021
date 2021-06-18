@@ -35,6 +35,21 @@ namespace WebApplication2
                     Configuration.GetConnectionString("DefaultConnection")
                 ));
 
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://example.com",
+                            "http://www.contoso.com");
+                    });
+            });
+
             services.AddScoped<PackagesService>();
 
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
@@ -69,6 +84,8 @@ namespace WebApplication2
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(options => options.AllowAnyOrigin());
 
             app.UseWebSockets();
 
